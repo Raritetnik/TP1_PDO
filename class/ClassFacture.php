@@ -11,7 +11,7 @@ class ClassFacture{
         $view = new View('facture','facture-index');
 
         $data = $this->crud->selectWith3Tables('Facture',
-        'livraison', 'id', 'Facture', 'Livraison_id',
+        'Livraison', 'id', 'Facture', 'Livraison_id',
         'Paiement', 'id', 'Facture', 'Paiement_id',
         'Membre', 'id', 'Facture', 'Membre_id');
         $view->output("factures", $data);
