@@ -1,16 +1,17 @@
 <?php
 class Crud extends PDO{
     public function __construct() {
-        parent::__construct("mysql:host=localhost;dbname=librairie; port=3306; charset=utf8",
-        "root", "");
+        //parent::__construct("mysql:host=localhost;dbname=librairie; port=3306; charset=utf8",
+        //"root", "");
 
-        //parent::__construct("mysql:host=localhost;dbname=e2196106; port=3306; charset=utf8",         "e2196106", "oSj2iBL4A5MFSp0OmlIh");
+        parent::__construct("mysql:host=localhost;dbname=e2196106; port=3306; charset=utf8",         "e2196106", "oSj2iBL4A5MFSp0OmlIh");
     }
 
     public function select($table, $field="id", $order="ASC") {
         $sql = "SELECT * FROM $table ORDER BY $field $order";
         $stmt = $this->query($sql);
-        return $stmt->fetchAll();;
+        $result = $stmt->fetchAll();
+        return $result;
     }
 
     public function selectWith1Table($table1, $table2, $fieldLien,

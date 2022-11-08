@@ -7,19 +7,7 @@ require_once __DIR__.'/connex/Crud.php';
 //print_r($_SERVER['PATH_INFO']);
 $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'], '/')) : '/';
 $crud = new Crud;
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-    href="<?= (!isset($url[1]) || $url[1] == "") ? "": "../"?>css/style.css">
-    <title>Document</title>
-</head>
-<body>
-<?php
+
 if($url == '/'){
     require_once 'class/Class-Home.php';
     $controller = new ClassHome;
@@ -46,6 +34,3 @@ if($url == '/'){
     }
 }
 ?>
-
-</body>
-</html>
