@@ -9,7 +9,7 @@ class ClassMembre{
 
     public function index(){
         $view = new View('membre','membre-index');
-        $view->output("membres", $this->crud->select('membre'));
+        $view->output("membres", $this->crud->select('Membre'));
     }
     public function error(){
         $view = new View('home','home-error');
@@ -18,51 +18,42 @@ class ClassMembre{
      * Creation d'une donnée de livre
      */
     public function create(){
-        $view = new View('livre','livre-create');
-        $optionsCategories = $this->crud->select('categorie');
-        $optionsEditeur = $this->crud->select('editeur');
-        $view->output('categories', $optionsCategories);
-        $view->output('editeurs', $optionsEditeur);
+        $view = new View('membre','membre-create');
     }
     public function save() {
         $data = $_POST;
-        $this->crud->insert('livre', $data);
+        $this->crud->insert('Membre', $data);
 
-        header("Location: ../livre");
+        header("Location: ../membre");
     }
     /**
-     * Modifier la donnée du livre
+     * Modifier la donnée du membre
      */
     public function modifier(){
         $id = $_GET['id'];
         if(!isset($id)) {
             $this->index();
         }
-        $view = new View('livre','livre-modifier');
-        $livre = $this->crud->selectId('livre', $id, 'id');
-        $view->output("livre", $livre);
-
-        $optionsCategories = $this->crud->select('categorie');
-        $optionsEditeur = $this->crud->select('editeur');
-        $view->output('categories', $optionsCategories);
-        $view->output('editeurs', $optionsEditeur);
+        $view = new View('membre','membre-modifier');
+        $membre = $this->crud->selectId('Membre', $id, 'id');
+        $view->output("membre", $membre);
     }
     public function update() {
         $data = $_POST;
         $id = $_GET['id'];
-        $this->crud->update('livre', $data, $id);
+        $this->crud->update('Membre', $data, $id);
 
-        header("Location: ../livre");
+        header("Location: ../membre");
     }
 
     /**
-     * Supprimer la donnée de livre
+     * Supprimer la donnée de membre
      */
     function delete() {
         $id = $_GET['id'];
-        $this->crud->delete('livre', intval($id));
+        $this->crud->delete('Membre', intval($id));
 
-        header("Location: ../livre");
+        header("Location: ../membre");
     }
 }
 ?>

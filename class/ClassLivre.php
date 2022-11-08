@@ -9,7 +9,7 @@ class ClassLivre{
     public function index(){
 
         $view = new View('livre','livre-index');
-        $view->output("livres", $this->crud->select('livre'));
+        $view->output("livres", $this->crud->select('Livre'));
     }
     public function error(){
         $view = new View('home','home-error');
@@ -19,14 +19,14 @@ class ClassLivre{
      */
     public function create(){
         $view = new View('livre','livre-create');
-        $optionsCategories = $this->crud->select('categorie');
-        $optionsEditeur = $this->crud->select('editeur');
+        $optionsCategories = $this->crud->select('Categorie');
+        $optionsEditeur = $this->crud->select('Editeur');
         $view->output('categories', $optionsCategories);
         $view->output('editeurs', $optionsEditeur);
     }
     public function save() {
         $data = $_POST;
-        $this->crud->insert('livre', $data);
+        $this->crud->insert('Livre', $data);
 
         header("Location: ../livre");
     }
@@ -39,18 +39,18 @@ class ClassLivre{
             header("Location: ../livre");
         }
         $view = new View('livre','livre-modifier');
-        $livre = $this->crud->selectId('livre', $id, 'id');
+        $livre = $this->crud->selectId('Livre', $id, 'id');
         $view->output("livre", $livre);
 
-        $optionsCategories = $this->crud->select('categorie');
-        $optionsEditeur = $this->crud->select('editeur');
+        $optionsCategories = $this->crud->select('Categorie');
+        $optionsEditeur = $this->crud->select('Editeur');
         $view->output('categories', $optionsCategories);
         $view->output('editeurs', $optionsEditeur);
     }
     public function update() {
         $data = $_POST;
         $id = $_GET['id'];
-        $this->crud->update('livre', $data, $id);
+        $this->crud->update('Livre', $data, $id);
 
         header("Location: ../livre");
     }
@@ -60,7 +60,7 @@ class ClassLivre{
      */
     function delete() {
         $id = $_GET['id'];
-        $this->crud->delete('livre', intval($id));
+        $this->crud->delete('Livre', intval($id));
 
         header("Location: ../livre");
     }
